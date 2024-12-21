@@ -1,0 +1,529 @@
+:root {
+    --primary-color: #2563eb; /* Light blue, for buttons and highlights */
+    --secondary-color: #1e40af; /* Darker blue for headers or emphasis */
+    --text-color: #1f2937; /* Dark grey text for readability */
+    --light-bg: #f3f4f6; /* Light grey background for sections */
+    --white: #ffffff; /* Pure white for clean, open spaces */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+#response-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+  .popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    position: relative; /* Keep it within the popup */
+    z-index: 1010; /* Slightly above the overlay */
+    text-align: center;
+  }
+  .close-btn {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1020; /* Ensure it's on top of everything in the popup */
+  }
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Navigation */
+/* General Navigation Styles */
+nav {
+    background: var(--white);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Mobile Navigation Burger Icon */
+.burger {
+    display: none; /* Hidden by default for desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.burger span {
+    background-color: var(--text-color);
+    height: 3px;
+    width: 100%;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Show burger and hide nav-links on small screens */
+@media (max-width: 768px) {
+    .burger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex; /* Show nav-links when active */
+    }
+}
+
+/* Cross Animation for Burger */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(
+        rgba(37, 99, 235, 0.1),
+        rgba(37, 99, 235, 0.05)
+    );
+    padding: 8rem 0 4rem;
+    text-align: center;
+    /* display: flex; */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* about us */
+.about-us {
+    padding: 40px;
+    background-color: var(--light-bg);
+  }
+  
+  .about-us-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-us-text {
+    width: 50%;
+  }
+  
+  .about-us-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .about-us-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .about-us-image {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-us-image img {
+    /* border: 1px solid var(--text-color); */
+    border-radius: 5%;
+    width: 350px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-us-content {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  
+    .about-us-text {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .about-us-image {
+      width: 100%;
+    }
+  
+    .about-us-image img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+  }
+
+
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 4rem 0;
+    background: var(--white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background: var(--light-bg);
+    text-align: center;
+}
+
+.feature-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Services Section */
+.services {
+    padding: 4rem 0;
+    background: var(--light-bg);
+    margin-bottom: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 
+
+/* How It Works Section */
+.how-it-works {
+    padding: 4rem 0;
+  
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.step-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.step-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Form Styles */
+.form-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--text-color);
+    color: var(--white);
+    padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-links h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px; /* Ensures equal width and height */
+    height: 60px;
+    background-color: #25D366; /* WhatsApp green */
+    border-radius: 50%; /* Makes it a perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.whatsapp-btn i {
+    font-size: 28px; /* Adjust icon size */
+    color: white; /* Icon color */
+}
+/* Cartoon Character Container */
+.chatbot-character {
+    position: fixed;
+    bottom: 90px;  /* Position above the WhatsApp button */
+    right: 20px;
+    z-index: 9998;
+    text-align: center;
+    animation: shake 2s infinite, bounce 2s infinite;  /* Animation for shaking and bouncing */
+}
+
+/* Character Image Styling */
+.character-image {
+    width: 100px;
+    height: auto;
+    animation: wave 2s infinite;  /* Wave animation */
+}
+
+/* Text Bubble for Chat */
+.chat-text {
+    background-color: #25d366;
+    padding: 8px 12px;
+    color: white;
+    font-size: 14px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Shake animation to grab attention */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Wave Animation */
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+}
+
+/* Optional: Add a slight hover effect to make it feel interactive */
+.chatbot-character:hover .character-image {
+    animation: wave 1s infinite alternate;
+}
+
+/* Mobile and Tablet Styles */
+@media (max-width: 768px) {
+    /* Adjust character container */
+    .chatbot-character {
+        bottom: 70px;  /* Adjust the bottom position on mobile */
+        right: 15px;   /* Adjust the right position */
+        text-align: center;
+    }
+
+    /* Smaller character image */
+    .character-image {
+        width: 80px;  /* Smaller size for mobile */
+    }
+
+    /* Adjust text bubble size */
+    .chat-text {
+        font-size: 12px;  /* Smaller text */
+        padding: 6px 10px;  /* Adjust padding */
+    }
+}
+
+/* Very Small Screens (Mobile Phones) */
+@media (max-width: 480px) {
+    /* Adjust character container further */
+    .chatbot-character {
+        bottom: 50px;  /* Further adjust the bottom position */
+        right: 10px;   /* Further adjust the right position */
+    }
+
+    /* Even smaller character image */
+    .character-image {
+        width: 60px;  /* Even smaller size */
+    }
+
+    /* Adjust text bubble size */
+    .chat-text {
+        font-size: 10px;  /* Even smaller text */
+        padding: 5px 8px;  /* Adjust padding */
+    }
+}
